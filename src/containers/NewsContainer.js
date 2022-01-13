@@ -35,13 +35,12 @@ const NewsContainer = () => {
     }, [urlList])
 
     return(
-        <>
-        <h1>This is the News Container</h1>
+        <div className='main-container'>
         <Header/>
         <FilterBox/>
         <TopStoriesList storyList={storyList}/>
         <Footer/>
-        </>
+        </div>
     )
 };
 

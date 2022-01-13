@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer = () => {
     return(
-        <h2>This is the footer</h2>
+        <h5>No more stories</h5>
     )
 };
     
