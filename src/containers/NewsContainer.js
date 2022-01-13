@@ -6,19 +6,29 @@ import TopStoriesList from '../components/TopStoriesList';
 
 const NewsContainer = () => {
 
-    const url = 'https://hacker-news.firebaseio.com/v0/topstories.json'
-
     const [urlList, seturlList] = useState([]);
 
-    const getAllURLS = function(){fetch(url)
-    .then(response => response.json())
-    .then(urls => seturlList(urls))}
+    const getAllURLS = function(){
+        fetch('https://hacker-news.firebaseio.com/v0/topstories.json')
+        .then(response => response.json())
+        .then(urls => seturlList(urls))}
 
     useEffect(() => {
         getAllURLS();
+        getDetails(urlList);
       }, [])
 
-    console.log(urlList.slice(0, 20));
+    const getDetails = function(urlList){
+        let storyList = []
+        for (let url of urlList){
+            let promise = fetch(`https://hacker-news.firebaseio.com/v0/item/${url}.json`).then(response => response.json)
+            storyList.push(promise)
+        }
+        
+        Promise.all(storyList)
+        .then(values => console.log(values))
+    }
+
 
     return(
         <>
