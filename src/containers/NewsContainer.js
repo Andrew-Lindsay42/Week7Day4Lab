@@ -9,6 +9,10 @@ const NewsContainer = () => {
     const [urlList, seturlList] = useState([]);
     const [storyList, setStoryList] = useState([]);
 
+    useEffect(() => {
+        getAllURLS();
+    }, [])
+
     const getAllURLS = function(){
         fetch('https://hacker-news.firebaseio.com/v0/topstories.json')
         .then(response => response.json())
@@ -21,26 +25,22 @@ const NewsContainer = () => {
 
         Promise.all(
             result.map(url => fetch(`https://hacker-news.firebaseio.com/v0/item/${url}.json`).then(response => response.json())
-            .then(value => tempList.push(value))
-            .then(() => setStoryList(tempList))))
+            .then(value => tempList.push(value))))
+            .finally(() => setStoryList(tempList))
     }
 
     useEffect(() => {
-        getAllURLS();
-    }, [])
-
-    useEffect(() => {
-        let result = urlList.slice(0,10);
+        let result = urlList.slice(0,5);
         getStories(result);
     }, [urlList])
 
     return(
         <>
         <h1>This is the News Container</h1>
-        {/* <Header/>
+        <Header/>
         <FilterBox/>
-        <TopStoriesList storyList={storylist}/>
-        <Footer/> */}
+        <TopStoriesList storyList={storyList}/>
+        <Footer/>
         </>
     )
 };
