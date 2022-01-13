@@ -2,15 +2,24 @@ import React from 'react';
 import Story from './Story';
 
 
-const TopStoriesList = () => {
-    return(
+const TopStoriesList = ({storyList}) => {
+
+    const stories = storyList.map((story, index) => {
+        return(
+            <li>
+                <Story story = {story} key = {index}/>
+            </li>
+        )
+    })
+
+    return (
         <>
-            <h4>This is the top stories list</h4>
-            <Story/>
-            <Story/>
-            <Story/>
+            <ul>
+                {stories}
+            </ul>
         </>
-    )
+    );
+    
 };
 
 export default TopStoriesList;
