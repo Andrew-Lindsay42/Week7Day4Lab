@@ -8,6 +8,7 @@ const NewsContainer = () => {
 
     const [urlList, seturlList] = useState([]);
     const [storyList, setStoryList] = useState([]);
+    const [search, setSearch] = useState('');
 
     useEffect(() => {
         getAllURLS();
@@ -19,6 +20,11 @@ const NewsContainer = () => {
         .then(urls => seturlList(urls))
     };
 
+    useEffect(() => {
+        let result = urlList.slice(0,13);
+        getStories(result);
+    }, [urlList])
+
     const getStories = function(result){
 
         let tempList = []
@@ -29,16 +35,11 @@ const NewsContainer = () => {
             .finally(() => setStoryList(tempList))
     }
 
-    useEffect(() => {
-        let result = urlList.slice(0,5);
-        getStories(result);
-    }, [urlList])
-
     return(
         <div className='main-container'>
         <Header/>
-        <FilterBox/>
-        <TopStoriesList storyList={storyList}/>
+        <FilterBox setSearch={setSearch}/>
+        <TopStoriesList storyList={storyList} search = {search}/>
         <Footer/>
         </div>
     )

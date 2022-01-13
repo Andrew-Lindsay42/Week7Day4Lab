@@ -1,9 +1,14 @@
 import React from 'react';
 
-const FilterBox = () => {
+const FilterBox = ({setSearch}) => {
+
+    const handleChange = function(event) {
+        setSearch(event.target.value);
+      }
+
     return(
         <>
-            
+            <input type="text" onChange={handleChange} />
         </>
     )
 };

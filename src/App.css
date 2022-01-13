@@ -21,10 +21,10 @@ a:hover {
 
 .main-container {
   margin: 0 auto;
-  margin-top: 10%;
+  margin-top: 5%;
   display: block;
   width: fit-content;
-  padding: 5%;
+  padding: 0% 5%;
   border: 1px solid slateblue;
   border-radius: 2%;
 }
