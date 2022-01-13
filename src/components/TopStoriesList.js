@@ -1,11 +1,11 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import Story from './Story';
 
 
 const TopStoriesList = ({storyList, search}) => {
 
     const stories = storyList.map((story, index) => {
-        if (story.title.includes(search)){
+        if (story.title.toUpperCase().includes(search.toUpperCase())){
         return(
                 <Story story = {story} key = {index}/>
         )
